@@ -34,6 +34,7 @@ enum excludeOptions {
    'mailMap',
    'multiLine',
    'strictDate',
+   'branch',
 }
 
 export interface DefaultLogFields {
@@ -57,6 +58,7 @@ export type LogOptions<T = DefaultLogFields> = {
    strictDate?: boolean;
    symmetric?: boolean;
    to?: string;
+   branch?: string;
 };
 
 interface ParsedLogOptions {
@@ -115,6 +117,9 @@ export function parseLogOptions<T extends Options>(
       ...customArgs,
    ];
 
+   if (typeof opt.branch === 'string') {
+      command.unshift(opt.branch);
+   }
    const maxCount: number | undefined = (opt as any).n || (opt as any)['max-count'] || opt.maxCount;
    if (maxCount) {
       command.push(`--max-count=${maxCount}`);
