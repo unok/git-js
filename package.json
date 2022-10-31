@@ -13,7 +13,7 @@
     "build": "lerna run build",
     "clean": "git clean -fxd -e .idea -e node_modules",
     "test": "lerna run test",
-    "postinstall": "lerna run build"
+    "postinstall": "npm install && lerna run build"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.4.2",
